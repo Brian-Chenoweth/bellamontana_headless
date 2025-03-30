@@ -12,7 +12,6 @@ import {
   TwitterIcon,
   PinterestIcon,
 } from 'react-share';
-
 import appConfig from 'app.config.js';
 import styles from './Footer.module.scss';
 
