@@ -3,8 +3,11 @@ import classNames from 'classnames/bind';
 import { FaBars, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { NavigationMenu, SkipNavigationLink } from '../';
+
 import styles from './Header.module.scss';
+
 
 const cx = classNames.bind(styles);
 
