@@ -3,15 +3,18 @@ import classNames from 'classnames/bind';
 import { FaBars, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { NavigationMenu, SkipNavigationLink } from '../';
 
 import styles from './Header.module.scss';
-let cx = classNames.bind(styles);
+
+const cx = classNames.bind(styles);
+
 /**
  * A Header component
  * @param {Props} props The props object.
  * @param {string} props.className An optional className to be added to the container.
- * @return {React.ReactElement} The FeaturedImage component.
+ * @return {React.ReactElement} The Header component.
  */
 export default function Header({ className, menuItems }) {
   const [isNavShown, setIsNavShown] = useState(false);
