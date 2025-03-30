@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { FaBars, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { NavigationMenu, SkipNavigationLink } from '../';
 
 import styles from './Header.module.scss';
@@ -32,10 +31,10 @@ export default function Header({ className, menuItems }) {
             <Link legacyBehavior href="/">
               <a title="Home">
                 <Image
-                  src="/logo.png"
+                  src="/logo-color.png"
                   width={400}
                   height={80}
-                  alt="Blueprint media logo"
+                  alt="Bella Montana logo"
                   layout="responsive"
                 />
               </a>

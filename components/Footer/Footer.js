@@ -1,17 +1,19 @@
+import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import {
-  FaFacebookF,
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-  FaYoutube,
-} from 'react-icons/fa';
 import appConfig from 'app.config.js';
-
-import { NavigationMenu } from '../';
-
+import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.scss';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  EmailIcon,
+  FacebookIcon,
+  TwitterIcon,
+  PinterestIcon,
+} from "react-share";
 
 let cx = classNames.bind(styles);
 
@@ -20,109 +22,104 @@ let cx = classNames.bind(styles);
  * @return {React.ReactElement} The Footer component.
  */
 export default function Footer({ menuItems }) {
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
   return (
     <footer className={cx('footer')}>
-      <div className="container">
-        {appConfig?.socialLinks && (
-          <div className={cx('social-links')}>
-            <ul aria-label="Social media">
-              {appConfig.socialLinks?.twitterUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.twitterUrl}
-                  >
-                    <FaTwitter title="Twitter" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
+      <div className={cx('top')}>
 
-              {appConfig.socialLinks?.facebookUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.facebookUrl}
-                  >
-                    <FaFacebookF
-                      title="Facebook"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.instagramUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.instagramUrl}
-                  >
-                    <FaInstagram
-                      title="Instagram"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.youtubeUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.youtubeUrl}
-                  >
-                    <FaYoutube title="YouTube" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.githubUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.githubUrl}
-                  >
-                    <FaGithub title="GitHub" className={cx('social-icon')} />
-                  </a>
-                </li>
-              )}
-
-              {appConfig.socialLinks?.linkedinUrl && (
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cx('social-icon-link')}
-                    href={appConfig.socialLinks.linkedinUrl}
-                  >
-                    <FaLinkedinIn
-                      title="LinkedIn"
-                      className={cx('social-icon')}
-                    />
-                  </a>
-                </li>
-              )}
-            </ul>
+      <div className='container'>
+        <div className={cx('contact-wrap')}>
+          <div className={cx('logo')}>
+            <Link legacyBehavior href="/">
+              <a title="Home">
+                <Image
+                  src="/logo-white.png"
+                  width={400}
+                  height={80}
+                  alt="Bella Montana logo"
+                  layout="responsive"
+                />
+              </a>
+            </Link>
           </div>
-        )}
 
-        <NavigationMenu className={cx('nav')} menuItems={menuItems} />
+          <div className={cx('contact')}>
+            <h4>Contact</h4>
+            {appConfig?.contactInfo && (
+              <div className={cx('contact')}>
+                {appConfig.contactInfo?.phoneNum && (
+                  <a
+                    rel="noopener noreferrer"
+                    className={cx('phone')}
+                    href={appConfig.contactInfo.phoneNum}
+                  >
+                    {appConfig.contactInfo.phoneNum}
+                  </a>
+                )}
 
-        <div className={cx('copyright')}>
-          &copy; {new Date().getFullYear()} Blueprint Media &#183; Powered By{' '}
-          <a href="https://wpengine.com/headless-wordpress">
-            Headless Platform
-          </a>
+                {appConfig.contactInfo?.email && (
+                  <a
+                    rel="noopener noreferrer"
+                    className={cx('email')}
+                    href={"mailto:" + appConfig.contactInfo.email}
+                  >
+                    {appConfig.contactInfo.email}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className={cx('social-share')}>
+
+              <EmailShareButton
+                url={currentUrl}
+                className={cx('share-button')}
+              >
+                <EmailIcon size={32} />
+              </EmailShareButton>
+
+              <FacebookShareButton
+                url={currentUrl}
+                className={cx('share-button')}
+              >
+                <FacebookIcon size={32} />
+              </FacebookShareButton>
+
+              <TwitterShareButton
+                url={currentUrl}
+                className={cx('share-button')}
+              >
+                <TwitterIcon size={32} />
+              </TwitterShareButton>
+
+              <PinterestShareButton
+                url={currentUrl}
+                className={cx('share-button')}
+              >
+                <PinterestIcon size={32} />
+              </PinterestShareButton>
+           </div>
+
+
+
+        </div>
+      </div>
+
+      </div>
+
+      <div className={cx('bottom')}>
+        <div className="container">
+          <div className={cx('copyright')}>
+            &copy; {new Date().getFullYear()} || Bella Montaña || Cal Poly Partners
+          </div>
         </div>
       </div>
     </footer>

@@ -46,6 +46,15 @@ const appConfig = {
     githubUrl: 'https://github.com/wpengine',
     linkedinUrl: 'https://www.linkedin.com/company/wpengine',
   },
+
+  /**
+   * @type {[key: 'phoneNum' | 'email']: string}
+   */
+  contactInfo: {
+    phoneNum: '(805) 756-1131',
+    email: 'realestate@calpoly.edu',
+  },
+
 };
 
 export default appConfig;
