@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
 import Image from 'next/image';
-import classNames from 'classnames/bind';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -63,7 +63,6 @@ export default function Footer() {
                       {appConfig.contactInfo.phoneNum}
                     </a>
                   )}
-
                   {appConfig.contactInfo?.email && (
                     <a
                       rel="noopener noreferrer"
@@ -81,15 +80,12 @@ export default function Footer() {
               <EmailShareButton url={currentUrl} className={cx('share-button')}>
                 <EmailIcon size={32} />
               </EmailShareButton>
-
               <FacebookShareButton url={currentUrl} className={cx('share-button')}>
                 <FacebookIcon size={32} />
               </FacebookShareButton>
-
               <TwitterShareButton url={currentUrl} className={cx('share-button')}>
                 <TwitterIcon size={32} />
               </TwitterShareButton>
-
               <PinterestShareButton url={currentUrl} className={cx('share-button')}>
                 <PinterestIcon size={32} />
               </PinterestShareButton>
