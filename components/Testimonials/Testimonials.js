@@ -8,7 +8,9 @@ import className from 'classnames/bind';
 import { Carousel } from 'react-responsive-carousel';
 
 import TestimonialItem from '../TestimonialItem';
-
+import Slide1 from './Slide1';
+import Slide2 from './Slide2';
+import Slide3 from './Slide3';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './Testimonials.module.scss';
 const cx = className.bind(styles);
@@ -24,7 +26,6 @@ export default function Testimonials({ testimonials }) {
   return (
     <>
       <div className={cx('container')}>
-        <FaQuoteRight className={cx('quote-icon')} />
 
         <Carousel
           showIndicators={false}
@@ -44,19 +45,9 @@ export default function Testimonials({ testimonials }) {
           infiniteLoop={true}
           showStatus={false}
         >
-          {testimonials.map((testimonial, index) => (
-            <TestimonialItem
-              author={testimonial?.testimonialFields?.testimonialAuthor}
-              key={index}
-            >
-              <div
-                className={cx('slide-content')}
-                dangerouslySetInnerHTML={{
-                  __html: testimonial?.testimonialFields?.testimonialContent,
-                }}
-              />
-            </TestimonialItem>
-          ))}
+            <Slide1 />
+            <Slide2 />
+            <Slide3 />
         </Carousel>
       </div>
     </>

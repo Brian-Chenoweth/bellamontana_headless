@@ -1,19 +1,100 @@
 .container {
   text-align: center;
+  // box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px 0px;
+  // box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px 0px;
+  &.testContain {
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px 0px;
+  }
+
+
 
   // Used to override react-responsive-carousel styles
   :global {
+    .carousel-root {
+      position: relative;
+      background-color: white;
+      svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.6); // optional
+        padding: 0rem;
+        border-radius: 50%;
+        fill: rgba(0,0,0, 0.6);
+        path {
+          // color: yellow;
+        }
+        cursor: pointer;
+        &:first-of-type {
+          left: 10px;
+        }
+        &:last-of-type {
+          right: 10px;
+        }        
+      }
+    }
     .carousel.carousel-slider {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       .slide {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+
+        h2 {
+          font-weight: 700;
+          line-height: 4.5rem;
+          // letter-spacing: normal;
+          margin: 0 0 1rem 0 !important;
+          span {
+            display: block;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: rgb(66, 130, 105);
+          }
+        }
+
+      }
+
+      .slideContent {
+        padding: 7.5rem 5rem;
+        // .button {
+        //   width: 100%;
+        // }
+        p {
+          line-height: 1.7;
+        }
+      }
+
+      .slideImg {
+        background-color: pink;
+        min-height: 750px;
+        background-size: cover;
+        background-position: center;
+        padding: 3.6rem 0;
+
+        &.slide1Img {
+          background-image: url('/static/slider/slider-bm-sign.jpg');
+        }
+
+        &.slide2Img {
+          background-image: url('/static/slider/slider-bm-home.jpg');
+        }
+
+        &.slide3Img {
+          background-image: url('/static/slider/slider-campus.jpg');
+        }
+
       }
     }
   }
+
+}
+.slide {
+  // text-align: left !important;
 }
 
 .arrow {

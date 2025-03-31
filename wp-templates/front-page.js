@@ -15,6 +15,7 @@ import {
   Footer,
   Posts,
   Testimonials,
+  HighlightCarousel,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 
@@ -49,11 +50,13 @@ export default function Component() {
       />
 
       <Main className={styles.home}>
-        <EntryHeader image={mainBanner} />
-        <div className="container">
-          <section className={styles.testimonials}>
-            <Testimonials testimonials={data?.testimonials?.nodes} />
-          </section>
+        {/* <EntryHeader image={mainBanner} /> */}
+        <div className="homeSliderWrap">
+          <div className="container testContain">
+            <section className={styles.testimonials}>
+              <Testimonials testimonials={data?.testimonials?.nodes} />
+            </section>
+          </div>
         </div>
       </Main>
       <Footer menuItems={footerMenu} />

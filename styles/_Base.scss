@@ -80,3 +80,15 @@ hr {
   color: #c53030;
   padding: 1rem;
 }
+
+.testContain {
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px 0px;
+  padding: 0 !important;
+}
+
+.homeSliderWrap {
+  background-image: url('/static/slider/faded-houses.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 0;
+}
