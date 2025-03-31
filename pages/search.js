@@ -10,7 +10,6 @@ import {
   SearchInput,
   SearchResults,
   SEO,
-  SearchRecommendations,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import { useState } from 'react';
@@ -101,9 +100,6 @@ export default function Page() {
             </div>
           )}
 
-          {!searchResultsLoading && searchResultsData === undefined && (
-            <SearchRecommendations categories={categories} />
-          )}
         </div>
       </Main>
     </>

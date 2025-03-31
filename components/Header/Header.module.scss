@@ -24,7 +24,7 @@
   margin: 0;
   padding: 1.2rem;
   background-color: transparent;
-  color: var(--color-white);
+  color: var(--color-black);
   border: 0.1rem solid var(--color-white);
   transition: color 0.3s ease, background-color 0.3s ease;
 
@@ -50,6 +50,7 @@
   @media (min-width: $breakpoint-small) {
     display: block;
     width: auto;
+    display: flex;
   }
 
   :global(.menu) {
@@ -69,13 +70,21 @@
       margin: 0 0.5rem;
     }
 
+    li.current-menu-item {
+      a {
+        border-bottom: 3px solid rgb(66, 130, 105);
+      }
+    }
+
     a {
       display: inline-flex;
       align-items: center;
       height: 100%;
       padding: 1rem;
-      font-weight: $font-weight-bold;
-      color: var(--color-black);
+      font-weight: $font-weight-normal;
+      color: #181816;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
 
       &:hover,
       &:focus {
