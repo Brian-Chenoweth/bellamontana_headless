@@ -1,5 +1,4 @@
 import * as MENUS from 'constants/menus';
-
 import { gql } from '@apollo/client';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import { pageTitle } from 'utilities';
@@ -14,6 +13,7 @@ import {
   NavigationMenu,
   FeaturedImage,
   SEO,
+  Heading,
 } from '../components';
 
 export default function Component(props) {
@@ -46,8 +46,10 @@ export default function Component(props) {
       />
       <Main>
         <>
-          <EntryHeader title={title} image={featuredImage?.node} />
-          <div className="container">
+          <EntryHeader image={featuredImage?.node} />
+          <div className="container content">
+            <h1 className="page-title">{title}</h1>
+            {/* <EntryHeader image={featuredImage?.node} /> */}
             <ContentWrapper content={content} />
           </div>
         </>

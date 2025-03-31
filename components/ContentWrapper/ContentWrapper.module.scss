@@ -29,13 +29,16 @@
     }
 
     a {
-      color: var(--color-secondary);
-      text-decoration: underline;
+      // color: var(--color-secondary);
+      border-bottom: 2px solid #f8e08e;
 
       &:hover,
       &:focus {
-        color: var(--color-secondary);
+        // color: var(--color-secondary);
         text-decoration: none;
+        color: #000;
+        background-color: #f8e08e;
+
       }
     }
 

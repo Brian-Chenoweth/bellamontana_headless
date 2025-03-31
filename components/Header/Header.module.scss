@@ -2,7 +2,7 @@
 
 .header {
   color: var(--color-white);
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 .bar {
@@ -75,13 +75,13 @@
       height: 100%;
       padding: 1rem;
       font-weight: $font-weight-bold;
-      color: var(--color-white);
+      color: var(--color-black);
 
       &:hover,
       &:focus {
-        border: 1px solid var(--color-white);
-        color: var(--color-white);
-        padding: 0.9rem;
+        // border: 1px solid var(--color-white);
+        color: rgb(66, 130, 105);
+        padding: 1rem;
       }
     }
   }

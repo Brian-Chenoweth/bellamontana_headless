@@ -9,6 +9,12 @@
   padding: 0 2rem;
   position: relative;
   width: 100%;
+  
+  &.content {
+    margin-top: -90px;
+    background-color: #fff;
+    padding-bottom: 5rem;
+  }
 
   &.small {
     max-width: $content-max-width;
@@ -17,7 +23,7 @@
 
 @media (min-width: $breakpoint-medium) {
   .container {
-    width: percentage(10/12);
+    width: percentage(11/12);
   }
 }
 
