@@ -10,6 +10,7 @@ import {
   SearchInput,
   SearchResults,
   SEO,
+  Footer,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 import { useState } from 'react';
@@ -27,8 +28,7 @@ export default function Page() {
   const { title: siteTitle, description: siteDescription } =
     pageData.generalSettings;
   const primaryMenu = pageData.headerMenuItems.nodes ?? [];
-  const categories = pageData.categories.nodes;
-
+  const footerMenu = pageData?.footerMenuItems?.nodes ?? [];
   const {
     data: searchResultsData,
     loading: searchResultsLoading,
@@ -102,6 +102,7 @@ export default function Page() {
 
         </div>
       </Main>
+      <Footer menuItems={footerMenu} />
     </>
   );
 }
@@ -138,6 +139,11 @@ Page.query = gql`
         databaseId
         uri
         name
+      }
+    }
+    footerMenuItems: menuItems(where: { location: $footerLocation }) {
+      nodes {
+        ...NavigationMenuItemFragment
       }
     }
   }
