@@ -1,9 +1,7 @@
 import classNames from 'classnames/bind';
 import Image from 'next/image';
-import styles from './HighlightCarousel.module.scss';
 import { useState } from 'react';
 
-const cx = classNames.bind(styles);
 
 const slides = [
   {
