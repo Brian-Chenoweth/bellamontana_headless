@@ -21,7 +21,7 @@ const cx = className.bind(styles);
  * @param {Testimonial[]} props.testimonials The array of testimonials.
  * @returns {React.ReactElement} The testimonials component.
  */
-export default function Testimonials({ testimonials }) {
+export default function Testimonials() {
   return (
     <div className={cx('container')}>
       <Carousel
