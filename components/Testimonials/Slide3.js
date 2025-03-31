@@ -1,9 +1,9 @@
-import className from 'classnames/bind';
-
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from './Testimonials.module.scss';
 import Button from 'components/Button';
-const cx = className.bind(styles);
+
+import styles from './Testimonials.module.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 export default function Slide3() {
   return (
