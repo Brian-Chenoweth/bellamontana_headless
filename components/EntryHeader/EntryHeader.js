@@ -14,7 +14,7 @@ const cx = className.bind(styles);
  * @param {string} props.className An optional className to be added to the EntryHeader.
  * @return {React.ReactElement} The EntryHeader component.
  */
-export default function EntryHeader({ title, image, date, author, className }) {
+export default function EntryHeader({ image, date, author, className }) {
   const hasText = date || author; // title removed from here
 
   return (
