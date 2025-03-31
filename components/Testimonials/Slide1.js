@@ -5,7 +5,7 @@ import styles from './Testimonials.module.scss';
 import Button from 'components/Button';
 const cx = className.bind(styles);
 
-export default function Slide1({ }) {
+export default function Slide1() {
   return (
     <>
 
