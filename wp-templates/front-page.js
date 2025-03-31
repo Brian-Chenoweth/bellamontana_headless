@@ -15,7 +15,6 @@ import {
   Footer,
   Posts,
   Testimonials,
-  HighlightCarousel,
 } from 'components';
 import { BlogInfoFragment } from 'fragments/GeneralSettings';
 

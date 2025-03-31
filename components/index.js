@@ -24,7 +24,7 @@ import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
 import LoadingSearchResult from './LoadingSearchResult';
 import SearchRecommendations from './SearchRecommendations';
-import HighlightCarousel from './HighlightCarousel';
+
 
 export {
   Button,
@@ -53,5 +53,4 @@ export {
   SearchResults,
   SearchRecommendations,
   LoadingSearchResult,
-  HighlightCarousel,
 };
