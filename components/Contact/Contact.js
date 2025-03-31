@@ -1,7 +1,4 @@
 import classNames from 'classnames/bind';
-import Link from 'next/link';
-import Image from 'next/image';
-import appConfig from 'app.config.js';
 
 import styles from './Contact.module.scss';
 
@@ -25,9 +22,6 @@ export default function Contact() {
             marginHeight={0}
             style={{ border: "none", maxWidth: "100%", width: "100%", margin: "0", maxHeight: "100vh" }}
             allowFullScreen=""
-            webkitallowfullscreen=""
-            mozallowfullscreen=""
-            msallowfullscreen=""
           >
           {" "}
         </iframe>
