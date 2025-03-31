@@ -6,6 +6,7 @@ import { pageTitle } from 'utilities';
 
 import {
   Header,
+  Contact,
   Footer,
   Main,
   ContentWrapper,
@@ -51,6 +52,7 @@ export default function Component(props) {
           </div>
         </>
       </Main>
+      <Contact />
       <Footer title={siteTitle} menuItems={footerMenu} />
     </>
   );

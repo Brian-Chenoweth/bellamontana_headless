@@ -15,6 +15,7 @@ import Projects from './Projects';
 import ProjectHeader from './ProjectHeader';
 import SEO from './SEO';
 import Footer from './Footer';
+import Contact from './Contact';
 import TaxonomyTerms from './TaxonomyTerms';
 import Testimonials from './Testimonials';
 import TestimonialItem from './TestimonialItem';
@@ -41,6 +42,7 @@ export {
   Projects,
   ProjectHeader,
   SEO,
+  Contact,
   Footer,
   TaxonomyTerms,
   Testimonials,
