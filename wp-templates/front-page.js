@@ -8,6 +8,7 @@ import {
   Main,
   Button,
   Heading,
+  Hero,
   CTA,
   NavigationMenu,
   SEO,
@@ -49,6 +50,7 @@ export default function Component() {
       />
 
       <Main className={styles.home}>
+        <Hero />
         {/* <EntryHeader image={mainBanner} /> */}
         <div className="homeSliderWrap">
           <div className="container testContain">
