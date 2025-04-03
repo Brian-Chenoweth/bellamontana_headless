@@ -1,0 +1,30 @@
+.hero-wrap {
+    background-image: url('/static/hero.jpg');
+    width: 100vw;
+    height: 100vh;
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10rem;
+
+        p {
+            text-align: center;
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 700;
+
+            margin-top: 1rme;
+
+            span {
+               color: rgb(189, 139, 19);
+            }
+
+
+
+        }
+    }
+
+}
