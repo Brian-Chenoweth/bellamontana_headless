@@ -2,7 +2,7 @@ import frontPage from './front-page';
 import page from './page';
 import single from './single';
 import project from './project';
-import home from './home';
+import bellamontanahome from './bellamontanahome';
 import archive from './archive';
 
 export default {
@@ -10,6 +10,6 @@ export default {
   page,
   single,
   project,
-  home,
+  bellamontanahome,
   archive,
 };

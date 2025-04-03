@@ -15,4 +15,12 @@ module.exports = withFaust({
     locales: ['en'],
     defaultLocale: 'en',
   },
+  async rewrites() {
+    return [
+      {
+        source: '/available-homes/:slug*',
+        destination: '/bella-montana-home/:slug*',
+      },
+    ];
+  },
 });

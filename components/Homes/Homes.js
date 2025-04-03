@@ -18,20 +18,24 @@ const cx = className.bind(styles);
  * @returns {React.ReactElement} The Homes component
  */
 function Homes({ homes, id, emptyText = 'No homes found.' }) {
+  
+  const filteredHomes = homes.filter((home) => {
+    const status = home.bellaMontanaFields?.status ?? [];
+    return Array.isArray(status) && (
+      status.includes('forSale') || status.includes('forRent')
+    );
+  });
+  
   const { firstNewResultRef, firstNewResultIndex } =
-    useFocusFirstNewResult(homes);
+    useFocusFirstNewResult(filteredHomes);
 
   return (
     <section {...(id && { id })}>
-      {homes.map((home, i) => {
+      {filteredHomes.map((home, i) => {
         const isFirstNewResult = i === firstNewResultIndex;
 
         return (
-          <div
-            className="row"
-            key={home.id ?? ''}
-            id={`home-${home.id}`}
-          >
+          <div className="row" key={home.id ?? ''} id={`home-${home.id}`}>
             <div className={cx('list-item')}>
               <FeaturedImage
                 className={cx('image')}
@@ -40,22 +44,27 @@ function Homes({ homes, id, emptyText = 'No homes found.' }) {
               />
               <div className={cx('content')}>
                 <Heading level="h3">
-                  <Link legacyBehavior href={home?.uri ?? '#'}>
+                <Link
+                    legacyBehavior
+                    href={`/available-homes${home?.uri?.replace('/bella-montana-home', '') ?? ''}`}
+                  >
+
                     <a ref={isFirstNewResult ? firstNewResultRef : null}>
                       {home.bellaMontanaFields?.projectTitle ?? home.title}
                     </a>
                   </Link>
                 </Heading>
-                <div>Status: {home.bellaMontanaFields?.status}</div>
+                <div>Status: {home.bellaMontanaFields?.status?.join(', ')}</div>
               </div>
             </div>
           </div>
         );
       })}
-      {homes && homes.length < 1 && <p>{emptyText}</p>}
+      {filteredHomes.length < 1 && <p>{emptyText}</p>}
     </section>
   );
 }
+
 
 Homes.fragments = {
   entry: gql`

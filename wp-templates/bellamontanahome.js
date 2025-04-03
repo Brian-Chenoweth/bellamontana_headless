@@ -17,13 +17,15 @@ export default function Component(props) {
   if (props.loading) {
     return <>Loading...</>;
   }
-
+  
   const { title: siteTitle } = props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
   const footerMenu = props?.data?.footerMenuItems?.nodes ?? [];
-
+  
   const { featuredImage, bellaMontanaFields } = props.data.bellamontanahome;
-  const { projectTitle, summary, contentArea } = bellaMontanaFields;
+  const { projectTitle, summary, contentArea, status } = bellaMontanaFields;
+  
+  const isAvailable = status === 'forRent' || status === 'forSale';
 
   return (
     <>
@@ -36,15 +38,24 @@ export default function Component(props) {
 
       <Main>
         <EntryHeader title={projectTitle} />
+        
+        {bellaMontanaFields?.status && (
+          <p className="text-center text-sm text-gray-600 uppercase tracking-wide mt-2 mb-4">
+            Status: {bellaMontanaFields.status}
+          </p>
+        )}
+
         <ProjectHeader
           image={featuredImage?.node}
           summary={summary}
           title={projectTitle}
         />
+        
         <div className="container">
           <ContentWrapper content={contentArea} />
         </div>
       </Main>
+
 
       <Footer title={siteTitle} menuItems={footerMenu} />
     </>
