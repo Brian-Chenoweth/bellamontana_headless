@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import * as MENUS from 'constants/menus';
 import { gql } from '@apollo/client';
+import { useEffect } from 'react';
 import {
   Header,
   EntryHeader,
@@ -57,6 +58,23 @@ export default function Component(props) {
   if (props.loading) {
     return <>Loading...</>;
   }
+
+  // Initialize GLightbox for the gallery
+  useEffect(() => {
+    import('glightbox').then((glightboxModule) => {
+      import('glightbox/dist/css/glightbox.css');
+      const GLightbox = glightboxModule.default;
+      const lightbox = GLightbox({
+        selector: '.wp-block-gallery img',
+        openEffect: 'fade',
+        closeEffect: 'fade',
+        slideEffect: 'slide',
+      });
+      return () => {
+        if (lightbox) lightbox.destroy();
+      };
+    });
+  }, [props.data]);
   
   const { title: siteTitle } = props?.data?.generalSettings;
   const primaryMenu = props?.data?.headerMenuItems?.nodes ?? [];
