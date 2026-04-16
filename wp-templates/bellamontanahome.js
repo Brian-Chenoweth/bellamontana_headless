@@ -54,6 +54,23 @@ const formatPhoneNumber = (value) => {
   return `(${areaCode}) ${firstPart}-${secondPart}`;
 };
 
+// Process gallery to make images clickable in lightbox
+const enhanceGalleryForLightbox = (htmlContent) => {
+  if (!htmlContent) return htmlContent;
+  
+  // Use regex to wrap gallery images in anchor tags for lightbox
+  // This matches images inside wp-block-gallery-style figure elements
+  const galleryImgRegex = /(<figure class="wp-block-image[^>]*>)\s*(<img[^>]*src="([^"]*)"[^>]*alt="([^"]*)"[^>]*>)\s*(<\/figure>)/g;
+  
+  return htmlContent.replace(galleryImgRegex, (match, figStart, img, src, alt, figEnd) => {
+    // Check if image is already wrapped in an anchor
+    if (img.includes('</a>') || figStart.includes('href=')) {
+      return match;
+    }
+    return `${figStart}<a href="${src}" class="glightbox" data-gallery="property-gallery" title="${alt}">${img}</a>${figEnd}`;
+  });
+};
+
 export default function Component(props) {
   if (props.loading) {
     return <>Loading...</>;
@@ -65,7 +82,7 @@ export default function Component(props) {
       import('glightbox/dist/css/glightbox.css');
       const GLightbox = glightboxModule.default;
       const lightbox = GLightbox({
-        selector: '.wp-block-gallery img',
+        selector: 'a.glightbox',
         openEffect: 'fade',
         closeEffect: 'fade',
         slideEffect: 'slide',
@@ -202,7 +219,7 @@ export default function Component(props) {
         <ContentWrapper>
           {bellaMontanaFields?.status && (
             <div className={cx('highlights')}>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
+              <div dangerouslySetInnerHTML={{ __html: enhanceGalleryForLightbox(content) }} />
             </div>
           )}
         </ContentWrapper>
