@@ -115,6 +115,14 @@ export default function Component(props) {
   // Normalize status: handles string or array (first value), trims whitespace
   status = Array.isArray(status) ? status[0] : status;
   status = typeof status === 'string' ? status.trim() : '';
+  const hasRealtorContact = Boolean(
+    realtorName ||
+    realtorEmail ||
+    realtorPhone ||
+    realtorName2 ||
+    realtorEmail2 ||
+    realtorPhone2
+  );
 
   return (
     <>
@@ -158,40 +166,44 @@ export default function Component(props) {
                       <p><strong>Date Available:</strong> {formatDate(dateAvailable)}</p>
                     )}
 
-                    {(realtorName || realtorEmail || realtorPhone || realtorName2 || realtorEmail2 || realtorPhone2) && <h2>Contact Information</h2>}
-
-                    {realtorName && <p><strong>{realtorName}</strong></p>}
-
-                    {realtorEmail && (
-                      <p>
-                        <a href={`mailto:${realtorEmail}`}>{realtorEmail}</a>
-                      </p>
-                    )}
-
-                    {realtorPhone && (
-                      <p>
-                        <a href={`tel:${String(realtorPhone).replace(/\D/g, '')}`}>
-                          {formatPhoneNumber(realtorPhone)}
-                        </a>
-                      </p>
-                    )}
-
-                    {(realtorName2 || realtorEmail2 || realtorPhone2) && (
+                    {status !== 'salePending' && hasRealtorContact && (
                       <>
-                        {realtorName2 && <p><strong>{realtorName2}</strong></p>}
+                        <h2>Contact Information</h2>
 
-                        {realtorEmail2 && (
+                        {realtorName && <p><strong>{realtorName}</strong></p>}
+
+                        {realtorEmail && (
                           <p>
-                            <a href={`mailto:${realtorEmail2}`}>{realtorEmail2}</a>
+                            <a href={`mailto:${realtorEmail}`}>{realtorEmail}</a>
                           </p>
                         )}
 
-                        {realtorPhone2 && (
+                        {realtorPhone && (
                           <p>
-                            <a href={`tel:${String(realtorPhone2).replace(/\D/g, '')}`}>
-                              {formatPhoneNumber(realtorPhone2)}
+                            <a href={`tel:${String(realtorPhone).replace(/\D/g, '')}`}>
+                              {formatPhoneNumber(realtorPhone)}
                             </a>
                           </p>
+                        )}
+
+                        {(realtorName2 || realtorEmail2 || realtorPhone2) && (
+                          <>
+                            {realtorName2 && <p><strong>{realtorName2}</strong></p>}
+
+                            {realtorEmail2 && (
+                              <p>
+                                <a href={`mailto:${realtorEmail2}`}>{realtorEmail2}</a>
+                              </p>
+                            )}
+
+                            {realtorPhone2 && (
+                              <p>
+                                <a href={`tel:${String(realtorPhone2).replace(/\D/g, '')}`}>
+                                  {formatPhoneNumber(realtorPhone2)}
+                                </a>
+                              </p>
+                            )}
+                          </>
                         )}
                       </>
                     )}
