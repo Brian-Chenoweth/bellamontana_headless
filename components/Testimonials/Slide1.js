@@ -23,6 +23,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-mountain.png"
+                alt="Beautiful mountain views"
                 width="100"
                 height="100"
                 objectFit="contain"
@@ -34,6 +35,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-house.png"
+                alt="Distinct home interiors"
                 width="100"
                 height="100"
                 objectFit="contain"
@@ -45,6 +47,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-chair.png"
+                alt="Elegant living areas"
                 width="100"
                 height="100"
                 objectFit="contain"
@@ -56,6 +59,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-lights.png"
+                alt="Contemporary finishes and fixtures"
                 width="100"
                 height="100"
                 objectFit="contain"
@@ -67,6 +71,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-bolt.png"
+                alt="Energy-saving appliances"
                 width="100"
                 height="100"
                 objectFit="contain"
@@ -78,6 +83,7 @@ export default function Slide1() {
             <div className={cx('single-icon')}>
               <Image
                 src="/static/slider/icon-condo.png"
+                alt="Homes priced below the San Luis Obispo market"
                 width="100"
                 height="100"
                 objectFit="contain"
