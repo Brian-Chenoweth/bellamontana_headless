@@ -17,7 +17,7 @@ export function middleware(request) {
     pathname.includes(LEGACY_PHONE_PATH_SEGMENT_ENCODED) ||
     decodedPathname.includes(LEGACY_PHONE_PATH_SEGMENT)
   ) {
-    return NextResponse.redirect(new URL('/', request.url), 308);
+    return NextResponse.redirect(new URL('/', request.url), 301);
   }
 
   return NextResponse.next();
