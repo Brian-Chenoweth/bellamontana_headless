@@ -24,6 +24,9 @@ const cx = classNames.bind(styles);
  */
 export default function Footer() {
   const [currentUrl, setCurrentUrl] = useState('');
+  const phoneHref = appConfig.contactInfo?.phoneNum
+    ? `tel:${String(appConfig.contactInfo.phoneNum).replace(/\D/g, '')}`
+    : '';
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -58,7 +61,7 @@ export default function Footer() {
                     <a
                       rel="noopener noreferrer"
                       className={cx('phone')}
-                      href={appConfig.contactInfo.phoneNum}
+                      href={phoneHref}
                     >
                       {appConfig.contactInfo.phoneNum}
                     </a>
