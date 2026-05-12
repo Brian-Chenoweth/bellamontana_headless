@@ -215,7 +215,7 @@ export default function Component(props) {
 
             <div className={cx('homeImage')}>
             <a href={featuredImage?.node?.sourceUrl} target="_blank" rel="noopener noreferrer">
-                <FeaturedImage image={featuredImage?.node} />
+                <FeaturedImage image={featuredImage?.node} title={title} />
               </a>
             </div>
 

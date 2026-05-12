@@ -14,6 +14,7 @@ import styles from './FeaturedImage.module.scss';
 export default function FeaturedImage({
   className,
   image,
+  title,
   width,
   height,
   ...props
@@ -25,6 +26,8 @@ export default function FeaturedImage({
     src = image?.sourceUrl;
   }
   const { altText } = image || '';
+  const sanitizedTitle = typeof title === 'string' ? title.replace(/<[^>]*>/g, '').trim() : '';
+  const imageAlt = typeof altText === 'string' && altText.trim() ? altText.trim() : sanitizedTitle;
 
   width = width ? width : image?.mediaDetails?.width;
   height = height ? height : image?.mediaDetails?.height;
@@ -35,7 +38,7 @@ export default function FeaturedImage({
         src={src}
         width={width}
         height={height}
-        alt={altText}
+        alt={imageAlt}
         objectFit="cover"
         layout="responsive"
         {...props}

@@ -71,6 +71,7 @@ function Homes({ homes, id }) {
                 <FeaturedImage
                   className={cx('image')}
                   image={home?.featuredImage?.node}
+                  title={home?.title}
                   priority={i < appConfig.projectsAboveTheFold}
                 />
               </a>

@@ -46,7 +46,7 @@ export default function Component(props) {
       />
       <Main>
         <>
-          <EntryHeader image={featuredImage?.node} />
+          <EntryHeader title={title} image={featuredImage?.node} />
           <div className="container content">
             <h1 className="page-title">{title}</h1>
             {/* <EntryHeader image={featuredImage?.node} /> */}
