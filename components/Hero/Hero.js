@@ -13,6 +13,10 @@ export default function Hero() {
 
       <div className="container">
         <div className={cx('hero-content')}>
+          <h1 className="sr-only">
+            Bella Montana Homes, an exclusive residential community for
+            university and faculty staff
+          </h1>
           <Image
             src="/static/welcome-to-bm.png"
             width="100"
