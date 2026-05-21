@@ -33,6 +33,39 @@ const formatDate = (value) => {
   });
 };
 
+const normalizeStatus = (rawStatus) => {
+  return Array.isArray(rawStatus)
+    ? rawStatus[0]?.trim()
+    : (rawStatus ?? '').trim();
+};
+
+const getStatusPriority = (status) => {
+  switch (status) {
+    case 'forSale':
+      return 0;
+    case 'forRent':
+      return 1;
+    case 'salePending':
+      return 2;
+    default:
+      return 99;
+  }
+};
+
+const titleCollator = new Intl.Collator('en', {
+  numeric: true,
+  sensitivity: 'base',
+});
+
+const extractHomeNumber = (title) => {
+  const cleanTitle = typeof title === 'string'
+    ? title.replace(/<[^>]*>/g, '').trim()
+    : '';
+  const match = cleanTitle.match(/^(\d+)/);
+
+  return match ? Number(match[1]) : Number.POSITIVE_INFINITY;
+};
+
 /**
  * Renders a list of Bella Montaña Home items
  * @param {Props} props The props object.
@@ -41,16 +74,34 @@ const formatDate = (value) => {
  * @returns {React.ReactElement} The Homes component
  */
 function Homes({ homes, id }) {
-  const filteredHomes = homes.filter((home) => {
-    const rawStatus = home.bellaMontanaFields?.status;
-    const status = Array.isArray(rawStatus) ? rawStatus[0]?.trim() : (rawStatus ?? '').trim();
+  const filteredHomes = homes
+    .filter((home) => {
+      const status = normalizeStatus(home.bellaMontanaFields?.status);
 
-    return (
-      status === 'forSale' ||
-      status === 'forRent' ||
-      status === 'salePending'
-    );
-  });
+      return (
+        status === 'forSale' ||
+        status === 'forRent' ||
+        status === 'salePending'
+      );
+    })
+    .sort((a, b) => {
+      const aStatus = normalizeStatus(a.bellaMontanaFields?.status);
+      const bStatus = normalizeStatus(b.bellaMontanaFields?.status);
+      const statusDiff = getStatusPriority(aStatus) - getStatusPriority(bStatus);
+
+      if (statusDiff !== 0) {
+        return statusDiff;
+      }
+
+      const aNumber = extractHomeNumber(a.title);
+      const bNumber = extractHomeNumber(b.title);
+
+      if (aNumber !== bNumber) {
+        return aNumber - bNumber;
+      }
+
+      return titleCollator.compare(a.title ?? '', b.title ?? '');
+    });
 
   const { firstNewResultRef, firstNewResultIndex } =
     useFocusFirstNewResult(filteredHomes);
@@ -60,7 +111,7 @@ function Homes({ homes, id }) {
       {filteredHomes.map((home, i) => {
         const isFirstNewResult = i === firstNewResultIndex;
         const { status, price, dateAvailable } = home.bellaMontanaFields ?? {};
-        const normalizedStatus = Array.isArray(status) ? status[0]?.trim() : (status ?? '').trim();
+        const normalizedStatus = normalizeStatus(status);
 
         return (
           <>
