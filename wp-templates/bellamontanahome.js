@@ -112,17 +112,30 @@ export default function Component(props) {
     realtorPhone2
   } = bellaMontanaFields;
 
+  const primaryRealtor = {
+    name: realtorName,
+    email: realtorEmail,
+    phone: realtorPhone,
+  };
+
+  const secondaryRealtor = {
+    name: realtorName2,
+    email: realtorEmail2,
+    phone: realtorPhone2,
+  };
+
+  const hasPrimaryRealtor = Boolean(
+    primaryRealtor.name || primaryRealtor.email || primaryRealtor.phone
+  );
+
+  const hasSecondaryRealtor = Boolean(
+    secondaryRealtor.name || secondaryRealtor.email || secondaryRealtor.phone
+  );
+
   // Normalize status: handles string or array (first value), trims whitespace
   status = Array.isArray(status) ? status[0] : status;
   status = typeof status === 'string' ? status.trim() : '';
-  const hasRealtorContact = Boolean(
-    realtorName ||
-    realtorEmail ||
-    realtorPhone ||
-    realtorName2 ||
-    realtorEmail2 ||
-    realtorPhone2
-  );
+  const hasRealtorContact = hasPrimaryRealtor || hasSecondaryRealtor;
 
   return (
     <>
@@ -170,36 +183,36 @@ export default function Component(props) {
                       <>
                         <h2>Contact Information</h2>
 
-                        {realtorName && <p><strong>{realtorName}</strong></p>}
+                        {primaryRealtor.name && <p><strong>{primaryRealtor.name}</strong></p>}
 
-                        {realtorEmail && (
+                        {primaryRealtor.email && (
                           <p>
-                            <a href={`mailto:${realtorEmail}`}>{realtorEmail}</a>
+                            <a href={`mailto:${primaryRealtor.email}`}>{primaryRealtor.email}</a>
                           </p>
                         )}
 
-                        {realtorPhone && (
+                        {primaryRealtor.phone && (
                           <p>
-                            <a href={`tel:${String(realtorPhone).replace(/\D/g, '')}`}>
-                              {formatPhoneNumber(realtorPhone)}
+                            <a href={`tel:${String(primaryRealtor.phone).replace(/\D/g, '')}`}>
+                              {formatPhoneNumber(primaryRealtor.phone)}
                             </a>
                           </p>
                         )}
 
-                        {(realtorName2 || realtorEmail2 || realtorPhone2) && (
+                        {hasSecondaryRealtor && (
                           <>
-                            {realtorName2 && <p><strong>{realtorName2}</strong></p>}
+                            {secondaryRealtor.name && <p><strong>{secondaryRealtor.name}</strong></p>}
 
-                            {realtorEmail2 && (
+                            {secondaryRealtor.email && (
                               <p>
-                                <a href={`mailto:${realtorEmail2}`}>{realtorEmail2}</a>
+                                <a href={`mailto:${secondaryRealtor.email}`}>{secondaryRealtor.email}</a>
                               </p>
                             )}
 
-                            {realtorPhone2 && (
+                            {secondaryRealtor.phone && (
                               <p>
-                                <a href={`tel:${String(realtorPhone2).replace(/\D/g, '')}`}>
-                                  {formatPhoneNumber(realtorPhone2)}
+                                <a href={`tel:${String(secondaryRealtor.phone).replace(/\D/g, '')}`}>
+                                  {formatPhoneNumber(secondaryRealtor.phone)}
                                 </a>
                               </p>
                             )}
@@ -263,6 +276,9 @@ Component.query = gql`
         realtorName
         realtorEmail
         realtorPhone
+        realtorName2
+        realtorEmail2
+        realtorPhone2
       }
       ...FeaturedImageFragment
     }
