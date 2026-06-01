@@ -30,10 +30,28 @@ const formatCurrency = (value) => {
   }).format(number);
 };
 
+const parseDateWithoutTimezoneShift = (value) => {
+  if (!value) return null;
+
+  if (typeof value === 'string') {
+    const trimmedValue = value.trim();
+    const isoDateMatch = trimmedValue.match(/^(\d{4})-(\d{2})-(\d{2})/);
+
+    // Date-like strings should be interpreted as local calendar dates.
+    // This prevents UTC offsets (e.g. +00:00) from shifting the day.
+    if (isoDateMatch) {
+      const [, year, month, day] = isoDateMatch;
+      return new Date(Number(year), Number(month) - 1, Number(day));
+    }
+  }
+
+  const parsedDate = new Date(value);
+  return isNaN(parsedDate.getTime()) ? null : parsedDate;
+};
+
 const formatDate = (value) => {
-  if (!value) return '';
-  const date = new Date(value);
-  if (isNaN(date.getTime())) return value;
+  const date = parseDateWithoutTimezoneShift(value);
+  if (!date) return value || '';
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
